@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<script>
+    let count = 1;
+    let x = setInterval(openwin, 20000);
+    let openedWindows = [];
+
+    let searchTerms = [
+
+    // Physics
+    "Newton's Laws",
+    "Gravity",
+    "Electromagnetism",
+    "Quantum Mechanics",
+    "Thermodynamics",
+    "Relativity",
+    "Kinematics",
+    "Optics",
+    "Momentum",
+    "Friction",
+    "Wave-particle duality",
+    "Inertia",
+    "Sound waves",
+    "Electrical circuits",
+    "Astrophysics",
+    "Nuclear physics",
+    "Fluid dynamics",
+    "Particle physics",
+    "Higgs boson",
+    "Superconductivity",
+    
+    // Chemistry
+    "Periodic Table",
+    "Chemical reactions",
+    "Molecules",
+    "Atoms",
+    "Bonding",
+    "Acids and bases",
+    "Electrochemistry",
+    "Organic chemistry",
+    "Inorganic chemistry",
+    "Catalysis",
+    "Oxidation",
+    "Reduction",
+    "Enzymes",
+    "Isotopes",
+    "Radioactivity",
+    "Chemical equilibrium",
+    "Solubility",
+    "Polymerization",
+    "Titration",
+    "Chromatography",
+    
+    // Biology
+    "DNA",
+    "Genetics",
+    "Evolution",
+    "Cell biology",
+    "Photosynthesis",
+    "Respiration",
+    "Ecology",
+    "Microbiology",
+    "Anatomy",
+    "Physiology",
+    "Biotechnology",
+    "Immunology",
+    "Neuroscience",
+    "Botany",
+    "Zoology",
+    "Biodiversity",
+    "Ecosystem",
+    "Natural selection",
+    "Gene expression",
+    "Biomechanics",
+    
+    // Astronomy
+    "Galaxy",
+    "Black hole",
+    "Star formation",
+    "Planetary systems",
+    "Exoplanets",
+    "Telescopes",
+    "Cosmology",
+    "Big Bang theory",
+    "Stellar evolution",
+    "Dark matter",
+    "Dark energy",
+    "Solar wind",
+    "Asteroids",
+    "Comets",
+    "Constellations",
+    "Celestial mechanics",
+    "Neutron star",
+    "Supernova",
+    "Milky Way",
+    "Red giant",
+    
+    // Earth Sciences
+    "Geology",
+    "Plate tectonics",
+    "Volcanoes",
+    "Earthquakes",
+    "Minerals",
+    "Rock cycle",
+    "Weathering",
+    "Climate change",
+    "Oceans",
+    "Atmosphere",
+    "Hydrology",
+    "Glaciers",
+    "Fossils",
+    "Geological time scale",
+    "Tsunami",
+    "Seismology",
+    "Sedimentary rocks",
+    "Geomorphology",
+    "Paleontology",
+    "Erosion",
+    
+    // Miscellaneous Science
+    "Nanotechnology",
+    "Renewable energy",
+    "Biomes",
+    "Environmental science",
+    "Quantum computing",
+    "Artificial intelligence",
+    "Robotics",
+    "Space exploration",
+    "Genetic engineering",
+    "Climate modeling",
+    "Fusion energy",
+    "Fossil fuels",
+    "Pollution",
+    "Hydrothermal vents",
+    "Microscopy",
+    "Astrobiology",
+    "Human genome",
+    "Tropical cyclones",
+    "Carbon cycle",
+    "Radiation",
+    
+    // Mathematics and Science Tools
+    "Mathematics",
+    "Statistics",
+    "Graph theory",
+    "Programming",
+    "Data analysis",
+    "Simulation",
+    "Modeling",
+    "Lab equipment",
+    "Microscope",
+    "Telescope",
+    "Satellite",
+    "Electron microscope",
+    "Calculus",
+    "Differential equations",
+    "Genome sequencing",
+    "PCR",
+    "Mass spectrometry",
+    "X-ray crystallography",
+    "Chromatography",
+    "Spectroscopy",
+    
+"Disembark", "Cruise line", "Ocean", "Sea", "River", "Lake", "Island", "Coast", "Shore", "Beach", "Sand", 
+"Surf", "Tide", "Sunset", "Sunrise", "Scenic", "View", "Landscape", "Mountains", "Valley", "Hill", "Peak", 
+"Canyon", "Forest", "Jungle", "Wilderness", "National park", "Nature reserve", "Wildlife", "Animal", "Bird", 
+"Fish", "Mammal", "Reptile", "Amphibian", "Insect", "Plant", "Flower", "Tree", "Rainforest", "Desert", "Tundra", 
+"Polar", "Arctic", "Antarctic", "Culture", "Tradition", "Custom", "Heritage", "History", "Archaeology", "Art", 
+"Architecture", "Sculpture", "Painting", "Music", "Dance", "Theater", "Performance", "Festival", "Event", 
+"Celebration", "Cuisine", "Food", "Dish", "Drink", "Recipe", "Restaurant", "Cafe", "Street food", "Market", 
+"Vendor", "Local", "Regional", "National", "International", "Language", "Communication", "Phrase", 
+"Translation", "Gesture", "Etiquette", "Clothing", "Fashion", "Textile", "Craft", "Handicraft", "Artisan", 
+"Souvenir", "Shopping", "Bargain", "Marketplace", "Boutique", "Gallery", "Museum", "Exhibition", "Collection", 
+"Artifact", "Antique", "Treasure", "Guidebook", "Map", "Compass", "GPS", "Camera", "Photograph", "Video", 
+"Memory", "Story", "Journal", "Diary", "Blog", "Vlog", "Photo album", "Scrapbook", "Documentary", "Document", 
+"Passport", "Visa", "Ticket", "Reservation", "Booking", "Itinerary", "Route", "Guide", "Traveler", "Tourist", 
+"Pilgrim", "Nomad", "Wanderer", "Explorer", "Adventurer", "Globetrotter", "Jetsetter", "Voyager", 
+"Road warrior", "Traveler", "Hitchhiker", "Backpacker", "Explorer", "Tourist", "Pilgrim", "Nomad", 
+"Wanderer", "Adventurer", "Guide", "Local", "Native", "Resident", "Visitor", "Tour guide", "Travel agent", 
+"Tour operator", "Pilot", "Captain", "Crew", "Driver", "Navigator", "Trekker", "Hiker", "Climber", 
+"Mountaineer", "Diver", "Snorkeler", "Surfer", "Sailor", "Cyclist", "Motorcyclist", "Driver", "Passenger", 
+"Tourist", "Traveler", "Jetsetter", "Globetrotter", "Voyager", "Explorer", "Nomad", "Pilgrim", "Backpacker", 
+"Hitchhiker", "Adventurer", "Wanderer", "Trekker", "Hiker", "Mountaineer", "Climber", "Diver", "Snorkeler", 
+"Surfer", "Sailor", "Cyclist", "Motorcyclist", "Road tripper", "Photographer", "Videographer", "Writer", 
+"Blogger", "Vlogger", "Influencer", "Content creator", "Digital nomad", "Travel agency", "Booking", 
+"Reservation", "Tourism", "Industry", "Sector", "Economy", "Business", "Leisure", "Adventure", 
+"Explore", "Discover", "Wanderlust", "Destination", "Tourism", "Ecotourism", "Sustainable", 
+"Responsible", "Travel", "Remote", "Work", "Location-independent", "Explore", "Discovery", "Adventure", 
+"Itinerary", "Travelogue", "Backpacker", "Hitchhike", "Camping", "Hiking", "Mountaineering", "Sightseeing", 
+"Tourism", "Destination", "Luggage", "Passport", "Visa", "Check-in", "Check-out", "Flight", "Airport", 
+"Terminal", "Boarding", "Gate", "Baggage", "Claim", "Security", "Customs", "Departure", "Arrival", "Layover", 
+"Transit", "Connection", "Delay", "Cancellation", "Reschedule", "Accommodation", "Hotel", "Hostel", "Motel", 
+"Resort", "Lodge", "Inn", "Bed and breakfast", "Campground", "Camping", "Tent", "Caravan", "Camper", 
+"Motorhome", "Booking", "Reservation", "Room", "Suite", "Check-in", "Check-out", "Amenities", "Service", 
+"Facility", "Pool", "Gym", "Spa", "Restaurant", "Bar", "Lobby", "Concierge", "Room service", "Housekeeping", 
+"Complaint", "Feedback", "Tip", "Review", "Tour", "Guided", "Group", "Private", "Sightseeing", "Walking tour", 
+"City tour", "Historical tour", "Cultural tour", "Adventure tour", "Eco tour", "Wildlife tour", "Excursion", 
+"Day trip", "Getaway", "Road trip", "Cruise", "Boat", "Ferry", "Ship", "Yacht", "Catamaran", "Sailboat", 
+"Cruise ship", "Cabin", "Deck", "Captain", "Crew", "Navigation", "Sailing", "Port", "Harbor", "Dock", "Embark", 
+"Disembark", "Cruise line", "Ocean", "Sea", "River", "Lake", "Island", "Coast", "Shore", "Beach", "Sand", 
+"Surf", "Tide", "Sunset", "Sunrise", "Scenic", "View", "Landscape", "Mountains", "Valley", "Hill", "Peak", 
+"Canyon", "Forest", "Jungle", "Wilderness", "National park", "Nature reserve", "Wildlife", "Animal", "Bird", 
+"Fish", "Mammal", "Reptile", "Amphibian", "Insect", "Plant", "Flower", "Tree", "Rainforest", "Desert", "Tundra"
+    
+    // Feel free to add more terms or adjust as per  preferences.
+
+    ]
+
+    function openwin() {
+        if (searchTerms.length == 0) {
+            alert("Please enter Search Terms");
+            return;
+        }
+
+        const random = Math.floor(Math.random() * searchTerms.length);
+        let searchWordTerm = searchTerms[random];
+
+        let url = `https://www.bing.com/search?pglt=41&q=${searchWordTerm}&cvid=650d04805d4d46feb32b1cc74aa2b629&gs_lcrp=EgZjaHJvbWUqBggAEEUYOzIGCAAQRRg7MgYIARAAGEAyBggCEEUYOzIGCAMQABhAMgYIBBAAGEAyBggFEAAYQDIGCAYQLhhAMgYIBxAFGEAyBggIEEUYPNIBCDEyMDFqMGoxqAIAsAIA&FORM=ANSPA1&PC=U531`;
+        
+        searchTerms = searchTerms.filter(i => i != searchWordTerm);
+        let newWindow = window.open(url, '_blank');
+        openedWindows.push(newWindow);
+        console.log(openedWindows);
+
+        if (openedWindows.length > 3) {
+            let windowClose = openedWindows[0]; // Get the first opened window
+            windowClose.close();
+            openedWindows.shift(); // Remove the first opened window from the array
+        }
+
+        count++;
+
+        if (count > 120) {
+            clearInterval(x);
+        }
+    }
+</script>
+
+<body>
+    <button onclick="openwin()">Open window Link</button>
+</body>
+</html>
